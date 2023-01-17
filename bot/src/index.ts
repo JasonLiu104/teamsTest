@@ -18,7 +18,6 @@ server.pre(cors.preflight);
 server.use(cors.actual);
 
 server.use((req,res,next)=>{
-  console.log('use')
   return next()
 })
 
@@ -42,14 +41,15 @@ server.post(
   restify.plugins.queryParser(),
   restify.plugins.bodyParser(), // Add more parsers if needed
   async (req, res) => {
+    console.log(req.body)
     // By default this function will iterate all the installation points and send an Adaptive Card
     // to every installation.
     for (const target of await bot.notification.installations()) {
       await target.sendAdaptiveCard(
         AdaptiveCards.declare<CardData>(notificationTemplate).render({
           title: "系統通知",
-          appName: "您有未簽核的表單",
-          description: `前往確認`,
+          appName: "您有來自"+ req.body + "未簽核的表單",
+          description: `請前往簽核系統確認`,
           notificationUrl: "https://teams.microsoft.com/l/entity/96318ef1-c00f-4e5d-ada8-7f4db1a1d627/index"
         })
       );

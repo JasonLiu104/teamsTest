@@ -11,6 +11,7 @@
       class="Info"
     >
       <h2>用戶資訊</h2>
+      <hr>
       <ul>
         <li>
           name:{{ info.displayName }}
@@ -23,6 +24,7 @@
         </li>
       </ul>
       <h2>請假專區</h2>
+      <hr>
       <ul>
         <li>
           請假
@@ -32,6 +34,7 @@
         </li>
       </ul>
       <h2>簽核通知</h2>
+      <hr>
       <ul>
         <li
           v-for="(item,index) in list"
@@ -98,7 +101,8 @@ async function sendBot (){
   isLoading.value = true
   const endpoint = 'http://localhost:3978/api/notification'
   const options = {
-    method: 'POST'
+    method: 'POST',
+    body: JSON.stringify(info.value.displayName)
   }
   try {
     await fetch(endpoint, options)
@@ -106,14 +110,15 @@ async function sendBot (){
   } catch (err){
     console.log(err)
   } finally {
-    localStorage.setItem('sign', JSON.stringify([ ...list.value, ...[ info.value.displayName + new Date() ] ]))
+    list.value = [ ...list.value, ...[ info.value.displayName + new Date() ] ]
+    localStorage.setItem('sign', JSON.stringify(list.value))
     isLoading.value = false
   }
 }
 
 function delMessage (index){
   list.value.splice(index, 1)
-  if (list.value.length){
+  if (list.value.length >= 0){
     localStorage.setItem('sign', JSON.stringify(list.value))
   }
 }
