@@ -1,0 +1,114 @@
+@use 'normalize.css';
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Make images easier to work with */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove default link styles */
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select,
+input::placeholder {
+  font: inherit;
+  color: currentColor;
+}
+
+// ------> 表單元素 reset
+input,
+select {
+  margin: 0;
+  padding-left: 8px;
+  font-size: 18px;
+  color: #161e2d;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
+  line-height: 38px;
+  letter-spacing: 1px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+button {
+  appearance: none;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.select,
+.input {
+  position: relative;
+  border: 1px solid #161e2d;
+}
+
+.select {
+  position: relative;
+  padding: 0px 20px 0px 8px;
+  line-height: 38px;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 6px 0 6px;
+    border-color: #161e2d transparent transparent transparent;
+    transform: translateY(-50%);
+    content: '';
+  }
+}

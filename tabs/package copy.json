@@ -1,0 +1,59 @@
+{
+  "name": "104z-temp",
+  "version": "0.1.0",
+  "scripts": {
+    "@microsoft/mgt-element": "^2.6.2",
+    "start": "cross-env vite -m development",
+    "build": "cross-env vite build",
+    "install:teamsfx": "npm install",
+    "dev:teamsfx": "env-cmd --silent -f .env.teamsfx.local npm run start",
+    "build:teamsfx": "cross-env-shell \"env-cmd -f .env.teamsfx.${TEAMS_FX_ENV} npm run build\"",
+    "build:teamsfx:dev": "cross-env TEAMS_FX_ENV=dev npm run build:teamsfx",
+    "preview": "vite preview --port 5050",
+    "lint": "npm run lint:script && npm run lint:style",
+    "lint:style": "stylelint --cache src/**/*.{vue,scss} --fix",
+    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix src",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.4",
+    "@microsoft/teams-js": "^2.7.1",
+    "@microsoft/teamsfx": "^2.0.0",
+    "@microsoft/mgt-teamsfx-provider": "^2.6.2",
+    "@vueuse/core": "^8.5.0",
+    "animate.css": "^4.1.1",
+    "axios": "^1.1.0",
+    "normalize.css": "^8.0.1",
+    "pinia": "^2.0.13",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@104corp/eslint-config-104z": "git+https://github.com/104corp/104z-eslint-config.git#v2.0.0",
+    "@104corp/stylelint-config-104z": "git+https://github.com/104corp/stylelint-config-104z.git#v1.0.0",
+    "@vitejs/plugin-legacy": "^1.8.2",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vueuse/head": "^0.7.6",
+    "husky": "^8.0.0",
+    "sass": "^1.51.0",
+    "terser": "^5.14.1",
+    "vee-validate": "^4.6.10",
+    "vite": "^2.9.5",
+    "vite-ssg": "^0.20.1",
+
+    "cross-env": "^7.0.3"
+  },
+    "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "."
+}
